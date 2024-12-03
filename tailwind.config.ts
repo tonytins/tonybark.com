@@ -16,6 +16,12 @@ export default {
             },
             '[type="checkbox"]': {
               'border-radius': '5px'
+            },
+            'img': {
+              'border-style': 'solid',
+              'border-color': 'gray',
+              'border-width': '1px',
+              'border-radius': '1em'
             }
           },
         },

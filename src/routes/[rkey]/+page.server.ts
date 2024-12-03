@@ -17,23 +17,23 @@ import type { Plugin } from "unified";
 const customSchema = {
     ...defaultSchema,
     attributes: {
-      ...defaultSchema.attributes,
-      font: [...(defaultSchema.attributes?.font ?? []), 'color'],
-      blockquote: [
-        ...(defaultSchema.attributes?.blockquote ?? []),
-        // bluesky
-        'className',
-        'dataBlueskyUri',
-        'dataBlueskyCid',
-        // instagram
-        'dataInstgrmCaptioned',
-        'dataInstgrmPermalink',
-        'dataInstgrmVersion'
-      ],
-      iframe: [
-        'width', 'height', 'title', 'frameborder', 'allow', 'referrerpolicy', 'allowfullscreen', 'style', 'seamless',
-        ['src', /https:\/\/(www.youtube.com|bandcamp.com)\/.*/]
-      ],
+        ...defaultSchema.attributes,
+        font: [...(defaultSchema.attributes?.font ?? []), 'color'],
+        blockquote: [
+            ...(defaultSchema.attributes?.blockquote ?? []),
+            // bluesky
+            'className',
+            'dataBlueskyUri',
+            'dataBlueskyCid',
+            // instagram
+            'dataInstgrmCaptioned',
+            'dataInstgrmPermalink',
+            'dataInstgrmVersion'
+        ],
+        iframe: [
+            'width', 'height', 'title', 'frameborder', 'allow', 'referrerpolicy', 'allowfullscreen', 'style', 'seamless',
+            ['src', /https:\/\/(www.youtube.com|bandcamp.com)\/.*/]
+        ],
       section: ['dataFootnotes', 'className']
     },
     tagNames: [...(defaultSchema.tagNames ?? []), 'font', 'mark', 'iframe', 'section']
