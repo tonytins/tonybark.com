@@ -20,5 +20,7 @@ PUBLIC_ABOUT="Welcome to my blog!" # Optional description of the kinds of posts 
 
 ```
 npm install
-npm build
+npm run build
+node index.js
 ```
+Put environment variables ahead of the last command, port can also be configured with `PORT`.
