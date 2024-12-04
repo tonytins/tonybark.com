@@ -16,8 +16,6 @@ npm run dev
 Change environment variables:
 ```sh
 PUBLIC_HANDLE="myhandle.bsky.social" # Your handle, or DID
-PUBLIC_ABOUT="Welcome to my blog!" # Optional description of the kinds of posts you'll be making, or a greeting.
-# PUBLIC_ABOUT Shows up under your Bluesky profile description in the profile card.
 ```
 
 #### Standalone

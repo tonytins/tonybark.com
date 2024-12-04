@@ -1,6 +1,6 @@
 <script lang="ts">
     const {data} = $props()
-    const posts = data.posts
+    const posts = Array.from(data.posts.values())
 </script>
 
 <svelte:head>

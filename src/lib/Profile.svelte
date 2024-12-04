@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { profile } from "./identity";
+    const { profile } = $props()
 </script>
 
 <div class="p-4 bg-local relative border-gray-500 border-[1px] rounded-[1em] m-2" style="background-image: url({profile.banner}); background-size: cover; background-position: center;">
@@ -11,10 +11,6 @@
             </div>
             <div class="p-3">
                 <p class="">{profile.description}</p>
-                {#if profile.about}
-                    <br/>
-                    <p class="">{profile.about}</p>
-                {/if}
             </div>
         </div>
 </div>

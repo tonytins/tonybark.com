@@ -1,16 +1,28 @@
-import { pds, profile } from "$lib/identity";
-import { error } from '@sveltejs/kit';
 import rehypeStringify from 'rehype-stringify'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import rehypeRaw from "rehype-raw";
-import type { Schema } from '../../../node_modules/rehype-sanitize/lib'
+import type { Schema } from '../../node_modules/rehype-sanitize/lib'
 import { unified } from 'unified'
 import type { Node } from 'unist'
 import type { Root, Element } from 'hast'
 import type { Plugin } from "unified";
+
+export interface Post {
+    title: string,
+    rkey: string,
+    createdAt: Date,
+    content: string // content parsed to html
+}
+
+export interface MarkdownPost {
+    title: string,
+    rkey: string,
+    createdAt: Date,
+    mdcontent: string // markdown content
+}
 
 // WhiteWind's own custom schema:
 // https://github.com/whtwnd/whitewind-blog/blob/7eb8d4623eea617fd562b93d66a0e235323a2f9a/frontend/src/services/DocProvider.tsx#L122
@@ -63,14 +75,14 @@ const rehypeUpgradeImage: Plugin<any, Root, Node> = () => {
     }
   }
 
-export async function load({ params }) {
-    const rawResponse = await fetch(`${pds}/xrpc/com.atproto.repo.getRecord?repo=${profile.did}&collection=com.whtwnd.blog.entry&rkey=${params.rkey}`)
-    const response = await rawResponse.json()
-    try {
-        
-        return {
-            title: response["value"]["title"],
-            mdcontent: String(
+export async function parse(mdposts: Map<string, MarkdownPost>) {
+    let posts: Map<string, Post> = new Map()
+    for (let [ rkey, post ] of mdposts) {
+        posts.set(rkey, {
+            title: post.title,
+            rkey: post.rkey,
+            createdAt: post.createdAt,
+            content: String(
                 await unified()
                     .use(remarkParse, { fragment: true }) // Parse the MD
                     .use(remarkGfm) // Parse GH specific MD
@@ -79,11 +91,9 @@ export async function load({ params }) {
                     .use(rehypeUpgradeImage)
                     .use(rehypeSanitize, customSchema as Schema) // Sanitize the HTML
                     .use(rehypeStringify) // Stringify
-                    .process(response["value"]["content"])
+                    .process(post.mdcontent)
             )
-        }
-    } catch (e) {
-        console.error(e)
-        error(404)
+        })
     }
+    return posts
 }
