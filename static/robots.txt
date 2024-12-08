@@ -3,6 +3,7 @@ User-Agent: ChatGPT-User
 User-Agent: ClaudeBot
 User-Agent: anthropic-ai
 User-Agent: CCBot
+User-agent: Bytespider
 User-Agent: FacebookBot
 User-Agent: Twitterbot
 User-Agent: PerplexityBot
@@ -12,6 +13,7 @@ User-Agent: mlbot
 User-Agent: PetalBot
 User-Agent: Amazonbot
 User-Agent: DuckAssistBot
+User-agent: Diffbot
 User-Agent: OAI-SearchBot
 User-Agent: OAI-SearchBot
 User-Agent: omgili
@@ -21,4 +23,6 @@ User-Agent: Webzio-Extended
 User-Agent: Meta-ExternalAgent
 User-Agent: Meta-ExternalFetcher
 User-Agent: cohere-ai
+User-agent: Google-Extended
+User-agent: PerplexityBot
 Disallow: /

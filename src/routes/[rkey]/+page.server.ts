@@ -34,10 +34,10 @@ const customSchema = {
             'width', 'height', 'title', 'frameborder', 'allow', 'referrerpolicy', 'allowfullscreen', 'style', 'seamless',
             ['src', /https:\/\/(www.youtube.com|bandcamp.com)\/.*/]
         ],
-      section: ['dataFootnotes', 'className']
+        section: ['dataFootnotes', 'className']
     },
     tagNames: [...(defaultSchema.tagNames ?? []), 'font', 'mark', 'iframe', 'section']
-  }
+}
 
 // Automatically enforce https on PDS images. Heavily inspired by WhiteWind's blob replacer:
 // https://github.com/whtwnd/whitewind-blog/blob/7eb8d4623eea617fd562b93d66a0e235323a2f9a/frontend/src/services/DocProvider.tsx#L90
@@ -59,15 +59,15 @@ const upgradeImage = (child: Node): void => {
 
 const rehypeUpgradeImage: Plugin<any, Root, Node> = () => {
     return (tree) => {
-      tree.children.forEach(child => upgradeImage(child))
+        tree.children.forEach(child => upgradeImage(child))
     }
-  }
+}
 
 export async function load({ params }) {
     const rawResponse = await fetch(`${pds}/xrpc/com.atproto.repo.getRecord?repo=${profile.did}&collection=com.whtwnd.blog.entry&rkey=${params.rkey}`)
     const response = await rawResponse.json()
     try {
-        
+
         return {
             title: response["value"]["title"],
             mdcontent: String(
