@@ -64,14 +64,15 @@ export async function load() {
         const rawResponse = await fetch(`${profile.pds}/xrpc/com.atproto.repo.listRecords?repo=${profile.did}&collection=com.whtwnd.blog.entry`)
         const response = await rawResponse.json()
         let mdposts: Map<string, MarkdownPost> = new Map();
-        for (let record of response["records"]) {
-            const matches = record["uri"].split("/")
+        for (let data of response["records"]) {
+            const matches = data["uri"].split("/")
             const rkey = matches[matches.length - 1]
-            if (matches && matches.length === 5 && record["value"] && record["value"]["visibility"] === "public") {
+            const record = data["value"]
+            if (matches && matches.length === 5 && record && (record["visibility"] === "public" || !data["visibility"])) {
                 mdposts.set(rkey, {
-                    title: record["value"]["title"],
-                    createdAt: new Date(record["value"]["createdAt"]),
-                    mdcontent: record["value"]["content"],
+                    title: record["title"],
+                    createdAt: new Date(record["createdAt"]),
+                    mdcontent: record["content"],
                     rkey
                 })
             }
