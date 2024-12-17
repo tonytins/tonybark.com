@@ -2,7 +2,6 @@
     import { CommentSection } from "bluesky-comments-svelte";
     import type { Post } from '$lib/parser.ts';
     import { PUBLIC_HANDLE } from "$env/static/public";
-    import { onMount } from "svelte";
 
     let { data } = $props();
     let post: Post | undefined = $state(undefined)
@@ -22,11 +21,12 @@
 </svelte:head>
 
 {#if post !== undefined}
-    <h1 class="text-center pt-4 pb-4">{post.title}</h1>
-    <hr class="pb-4">
+    <h1 class="text-center my-4">{post.title}</h1>
+    <hr class="my-4">
     <article class="mx-auto max-w-4xl px-2 sm:px-6 lg:px-8 prose dark:prose-invert">
         {@html post.content}
     </article>
+    <hr class="my-4">
     <CommentSection author={PUBLIC_HANDLE} />
 {:else}
 <h1 class="text-center pt-4 pb-4">No such post</h1>
