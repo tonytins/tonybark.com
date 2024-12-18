@@ -68,7 +68,7 @@ export async function load() {
             const matches = data["uri"].split("/")
             const rkey = matches[matches.length - 1]
             const record = data["value"]
-            if (matches && matches.length === 5 && record && (record["visibility"] === "public" || !data["visibility"])) {
+            if (matches && matches.length === 5 && record && (record["visibility"] === "public" || !record["visibility"])) {
                 mdposts.set(rkey, {
                     title: record["title"],
                     createdAt: new Date(record["createdAt"]),
