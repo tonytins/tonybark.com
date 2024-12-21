@@ -1,10 +1,10 @@
 # TonyBark.com
 
-A small, self-hosted [WhiteWind](https://whtwnd.com/) blog, powered by [WhiteBreeze](https://github.com/hugeblank/whitebreeze).
+A small, self-hosted [WhiteWind](https://github.com/whtwnd/whitewind-blog) blog, powered by [WhiteBreeze](https://github.com/hugeblank/whitebreeze).
 
 ## Usage
 
-*[Bun](https://bun.sh/) recommended.*
+_[Bun](https://bun.sh/) recommended._
 
 ### Environment variables
 
@@ -30,6 +30,7 @@ npm install
 npm run build
 node index.js
 ```
+
 Put environment variables ahead of the last command, port can also be configured with `PORT`.
 
 ### Dockerized
